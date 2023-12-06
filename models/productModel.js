@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    name : {
+    name: {
         type: String,
         required: [true, "Please enter product name"],
         trim: true,
@@ -46,7 +46,7 @@ const productSchema = new mongoose.Schema({
                 'Outdoor',
                 'Home'
             ],
-            message : "Please select correct category"
+            message: "Please select correct category"
         }
     },
     seller: {
@@ -64,7 +64,10 @@ const productSchema = new mongoose.Schema({
     },
     reviews: [
         {
-            user:mongoose.Schema.Types.ObjectId,
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            },
             rating: {
                 type: String,
                 required: true
@@ -76,10 +79,10 @@ const productSchema = new mongoose.Schema({
         }
     ],
     user: {
-        type : mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId
     }
     ,
-    createdAt:{
+    createdAt: {
         type: Date,
         default: Date.now()
     }
